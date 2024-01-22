@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+/src/pass.js
+
 # testing
 /coverage
 

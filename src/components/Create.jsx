@@ -3,10 +3,13 @@ import { ethers } from "ethers"
 import { Row, Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-
+import {API, SECRET} from '../pass'
 
 
 const Create = ({ marketplace, nft }) => {
+
+  console.log(API)
+  console.log(SECRET)
 
     const [nftimage, setNFTImage] = useState();
     const [forminfo, setFormInfo] = useState({
@@ -56,8 +59,8 @@ const Create = ({ marketplace, nft }) => {
               url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
               data: formData,
               headers: {
-                pinata_api_key: `0a13ef76fb9e01561e05`,
-                pinata_secret_api_key: `f0a2d096004e4f0483a64d06236ddc252b8d8acf612cde6465bc78f013a08ab0`,
+                pinata_api_key: `${API}`,
+                pinata_secret_api_key: `${SECRET}`,
                 "Content-Type": "multipart/form-data",
               },
             });
