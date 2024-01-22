@@ -94,7 +94,7 @@ export default function MyItem({ marketplace, nft, account }) {
     <div className="flex justify-center">
       {listedItems.length > 0 ?
         <div className="px-5 py-3 container">
-            <h2>Listed</h2>
+            <h2>Created NFT</h2>
           <div className='flex flex-wrap  gap-4 mt-4 justify-start items-center'>
             {listedItems.map((item, idx) => (
                <div className="w-1/5 h-fit bg-red-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
