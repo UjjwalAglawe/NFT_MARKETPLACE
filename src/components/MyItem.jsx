@@ -53,8 +53,7 @@ export default function MyItem({ marketplace, nft, account }) {
     let soldItems = []
     for (let indx = 1; indx <= itemCount; indx++) {
       const i = await marketplace.items(indx)
-      console.log(i.seller)
-      console.log(account)
+      
       if (i.seller === account) {
         
         // get uri url from nft contract
@@ -82,6 +81,7 @@ export default function MyItem({ marketplace, nft, account }) {
     setListedItems(listedItems)
     setSoldItems(soldItems)
   }
+
   useEffect(() => {
     loadListedItems()
   }, [])

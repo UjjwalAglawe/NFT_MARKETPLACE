@@ -10,6 +10,7 @@ import Create from './components/Create.jsx';
 import MyItem from './components/MyItem.jsx';
 import MyPurchases from "./components/Mypurchases.jsx";
 import Nav from './components/Nav.jsx';
+import Purchaes from './components/Purchaes.jsx';
 
 function App() {
 
@@ -37,8 +38,8 @@ function App() {
         const address = await signer.getAddress();
         setAccount(address);
         setLoading(false)
-        let marketplaceAddress = "0x5B2cEb3b2c0981f91BaDec22302dC064b2D9339c";
-        let nftAddress = "0x57d43b02FDdc168E4684a0F4B7f91BfdEa68b8c4";
+        let marketplaceAddress = "0x5B020e60691BaA4A388D153d4Db204f5ab028853";
+        let nftAddress = "0x2D79c1a592bF8876194726b301b28114dc885748";
 
         const marketplacecontract = new ethers.Contract(
           marketplaceAddress,
@@ -77,7 +78,8 @@ function App() {
           <Route path='/' element={<Hero marketplace={marketplace} nft={nft} />}/>
           <Route path='/create'  element={<Create marketplace={marketplace} nft={nft} />}/>
           <Route path='/my-listed-nfts' element={<MyItem marketplace={marketplace} nft={nft} account={account} />}/>
-          <Route path='/my-purchases' element={<MyPurchases marketplace={marketplace} nft={nft} account={account} />} />
+          {/* <Route path='/my-purchases' element={<MyPurchases marketplace={marketplace} nft={nft} account={account} />} /> */}
+          <Route path='/my-purchases' element={<Purchaes marketplace={marketplace} nft={nft} account={account} />} />
         </Routes>
         )}
     
