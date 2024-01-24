@@ -2,38 +2,33 @@ import { useState, useEffect } from 'react'
 import { ethers } from "ethers"
 
 
-export default function MyPurchases({ marketplace, nft, account }) {
+export default function Purchaes({ marketplace, nft, account }) {
+    const [purchases, setPurchases] = useState([])
+    const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
-    document.title = "My Purchases"
+    document.title = "Purchases"
 }, []); 
 
-  const [loading, setLoading] = useState(true)
-  const [purchases, setPurchases] = useState([])
 
 
-  const loadPurchasedItems = async () => {
-   
-      const filter =  marketplace.filters.Bought(null,null,null,null,null,account)
+const loadPurchasedItems = async () => {
       
-      const results = await marketplace.queryFilter(filter)
+    const itemCount = await marketplace.soldCount()
 
-      
-      const purchases = await Promise.all(results.map(async i => {
-        // fetch arguments from each result
-        i = i.args
-        // get uri url from nft contract
+    for(let indx=1; indx<=itemCount; indx++){
+        const i = await marketplace.solds(indx);
+
+        if(i.buyer === account){
+            // get uri url from nft contract
         const uri = await nft.tokenURI(i.tokenId)
         // use uri to fetch the nft metadata stored on ipfs 
-      
         const response = await fetch(uri)
-        
         const metadata = await response.json()
         // get total price of item (item price + fee)
-        console.log(metadata);
         const totalPrice = await marketplace.getTotalPrice(i.itemId)
         // define listed item object
-        let purchasedItem = {
+        let item = {
           totalPrice,
           price: i.price,
           itemId: i.itemId,
@@ -41,25 +36,22 @@ export default function MyPurchases({ marketplace, nft, account }) {
           description: metadata.description,
           image: metadata.image
         }
-        return purchasedItem
-      }))
-      setLoading(false)
-      setPurchases(purchases)
-  }
+        purchases.push(item);
+        }
+    }
+    setLoading(false)
+    setPurchases(purchases)
 
- 
+    }
+    
+
+    
   
-  
-
-
 
 
   useEffect( () => {
-    async function load(){
-      await loadPurchasedItems();
-    }
-
-    load();
+   
+       loadPurchasedItems();
    
   }, [])
 
