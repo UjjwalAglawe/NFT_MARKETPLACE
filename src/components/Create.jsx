@@ -7,9 +7,6 @@ import { toast } from 'react-toastify'
 
 const Create = ({ marketplace, nft }) => {
 
-  console.log(API)
-  console.log(SECRET)
-
     const [nftimage, setNFTImage] = useState();
     const [forminfo, setFormInfo] = useState({
       title:"",
