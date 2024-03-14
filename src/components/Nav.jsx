@@ -5,7 +5,7 @@ function Nav({account}) {
 
   return (
 
-<nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+<nav class="border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 transition ease-in-out hover:bg-gray-950 ">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <div class="flex cursor-pointer items-center space-x-3 rtl:space-x-reverse">
         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">NFT MarketPlace</span>
@@ -13,10 +13,10 @@ function Nav({account}) {
     </div>
 
     <div className='w-1/2 flex justify-around px-6'>
-                     <Link className='no-underline text-gray-200' as={Link} to="/">Home</Link>
-                      <Link className='no-underline text-gray-200' as={Link} to="/create">Create</Link>
-                      <Link className='no-underline text-gray-200' as={Link} to="/my-listed-nfts">My Listed Items</Link>
-                      <Link className='no-underline text-gray-200' as={Link} to="/my-purchases">My Purchases</Link>
+                     <Link className='no-underline text-gray-200 text-lg font-semibold hover:text-xl' as={Link} to="/">Home</Link>
+                      <Link className='no-underline text-gray-200 text-lg font-semibold hover:text-xl' as={Link} to="/create">Create</Link>
+                      <Link className='no-underline text-gray-200 text-lg font-semibold hover:text-xl' as={Link} to="/my-listed-nfts">My Listed Items</Link>
+                      <Link className='no-underline text-gray-200 text-lg font-semibold hover:text-xl' as={Link} to="/my-purchases">My Purchases</Link>
     </div>
    
     <div className='flex justify-center items-center'>

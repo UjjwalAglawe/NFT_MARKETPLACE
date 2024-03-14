@@ -11,7 +11,7 @@ function renderSoldItems(items) {
       <h2>Sold</h2>
       <div className='flex flex-wrap  gap-4 mt-4 justify-start items-center'>
         {items.map((item, idx) => (
-          <div className="w-1/5 h-fit bg-red-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+          <div className="w-1/5 h-fit bg-red-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  hover:bg-slate-400">
             
           <img
               className="rounded-t-lg overflow-hidden object-cover justify-center w-full max-h-60"

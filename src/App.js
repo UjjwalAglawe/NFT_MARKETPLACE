@@ -38,8 +38,8 @@ function App() {
         const address = await signer.getAddress();
         setAccount(address);
         setLoading(false)
-        let marketplaceAddress = "0x5B020e60691BaA4A388D153d4Db204f5ab028853";
-        let nftAddress = "0x2D79c1a592bF8876194726b301b28114dc885748";
+        let marketplaceAddress = "0x7526D8918Ba4f0b26DeD06eBA6Bbcd6Adf99F5fC";
+        let nftAddress = "0x2DBC227c8Db7819b0bf9C81eE4059B707ac38a9B";
 
         const marketplacecontract = new ethers.Contract(
           marketplaceAddress,
@@ -70,7 +70,7 @@ function App() {
    
     <BrowserRouter>
      <ToastContainer/>
-    <div className="App">
+    <div className="App bg-gradient-to-r from-indigo-500 to-indigo-200...">
       <Nav account={account}/>
       {
         loading ? (<div>Connecting to Metamask</div>) :(

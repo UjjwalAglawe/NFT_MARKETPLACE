@@ -55,8 +55,8 @@ const Create = ({ marketplace, nft }) => {
               url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
               data: formData,
               headers: {
-                pinata_api_key: `0a13ef76fb9e01561e05`,
-                pinata_secret_api_key: `f0a2d096004e4f0483a64d06236ddc252b8d8acf612cde6465bc78f013a08ab0`,
+                pinata_api_key: `1a7cac69d0dac2bceaeb`,
+                pinata_secret_api_key: `d70366959ea7a7fd5396abed2b11003168369c278987b9d6cb09d195d71cebc2`,
                 "Content-Type": "multipart/form-data",
               },
             });
@@ -76,8 +76,8 @@ const Create = ({ marketplace, nft }) => {
               const url = 'https://api.pinata.cloud/pinning/pinJSONToIPFS';
               const headers = {
                   'Content-Type': 'application/json',
-                  'pinata_api_key': `0a13ef76fb9e01561e05`,
-                  'pinata_secret_api_key': `f0a2d096004e4f0483a64d06236ddc252b8d8acf612cde6465bc78f013a08ab0`
+                  'pinata_api_key': `1a7cac69d0dac2bceaeb`,
+                  'pinata_secret_api_key': `d70366959ea7a7fd5396abed2b11003168369c278987b9d6cb09d195d71cebc2`
               };
   
               try {
@@ -146,10 +146,10 @@ const Create = ({ marketplace, nft }) => {
 
 
   return (
-    <div className="container-fluid mt-5">
-      <div className="row">
-        <main role="main" className="col-lg-12 mx-auto" style={{ maxWidth: '1000px' }}>
-          <div className="content mx-auto">
+    <div style={{"min-height":"100vh"}} >
+      <div className="flex ml-20 mt-20">
+        <main role="main">
+          <div className="content mx-auto text-xl ml-20 space-y-8 text-white shadow-2xl rounded-lg border-2 p-5 px-10 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ...">
             <Row className="g-4">
               <Form.Control
                 type="file"
@@ -157,12 +157,12 @@ const Create = ({ marketplace, nft }) => {
                 name="file"
                 onChange={changeHandler}
               />
-              <Form.Control onChange={handleChange} name="title" id="title"  size="lg" required type="text" placeholder="Name" />
+              <Form.Control onChange={handleChange} name="title" id="title"  size="lg"  required type="text" placeholder="Name" />
               <Form.Control onChange={handleChange} name="description" id="description" size="lg" required as="textarea" placeholder="Description" />
               <Form.Control onChange={handleChange} name="price" id="price" size="lg" required type="number" placeholder="Price in ETH" />
               <div className="d-grid px-0">
                 <Button onClick={handleEvent} variant="primary" size="lg">
-                  Create & List NFT!
+                  Create NFT!
                 </Button>
               </div>
             </Row>
