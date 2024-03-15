@@ -111,9 +111,9 @@ const Create = ({ marketplace, nft }) => {
 
 
   const mintThenList = async (uri) => { 
-    toast.info("Confirm to Mint the NFT", {
-      position: "top-center"
-    })
+    // toast.info("Confirm to Mint the NFT", {
+    //   position: "top-center"
+    // })
   const tx1=  await(await nft.mint(uri))
 
   toast.info("Wait till transaction Confirms....", {

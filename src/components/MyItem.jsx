@@ -87,7 +87,7 @@ export default function MyItem({ marketplace, nft, account }) {
   }, [])
   if (loading) return (
     <main style={{ padding: "1rem 0" }}>
-      <h2>Loading...</h2>
+      <h2>Fetching...</h2>
     </main>
   )
   return (
@@ -124,7 +124,7 @@ export default function MyItem({ marketplace, nft, account }) {
         </div>
         : (
           <main style={{ padding: "1rem 0" }}>
-            <h2>No listed assets</h2>
+            <h2>No listed NFT's</h2>
           </main>
         )}
     </div>
