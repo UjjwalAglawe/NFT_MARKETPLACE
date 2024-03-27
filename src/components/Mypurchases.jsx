@@ -48,10 +48,6 @@ export default function MyPurchases({ marketplace, nft, account }) {
   }
 
  
-  
-  
-
-
 
 
   useEffect( () => {
