@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { ethers } from "ethers"
 import { click } from '@testing-library/user-event/dist/click';
 
-const Home = ({ marketplace, nft }) => {
+const Home = ({ marketplace, nft , account }) => {
 
   useEffect(()=>{
     document.title = "Home"
@@ -42,6 +42,7 @@ const Home = ({ marketplace, nft }) => {
 
   const buyMarketItem = async (item) => {
     await (await marketplace.purchaseItem(item.itemId, { value: item.totalPrice })).wait()
+    // await marketplace.item.seller=account;
     loadMarketplaceItems()
   }
 
@@ -54,7 +55,7 @@ const Home = ({ marketplace, nft }) => {
     </main>
   )
   const homeClick=()=>{
-    console.log(click);
+    console.log("click");
   }
   return (
     <>
@@ -82,7 +83,7 @@ const Home = ({ marketplace, nft }) => {
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                    <strong>{ethers.utils.formatEther(item.totalPrice)} ETH</strong>
                 </p>
-                <a onClick={() => homeClick} className="inline-flex no-underline w-20 items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <a onClick={() => homeClick()} className="inline-flex no-underline w-20 items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                    Buy
                     <svg
                         className="rtl:rotate-180 w-3.5 h-3.5 ms-2"

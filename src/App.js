@@ -75,7 +75,7 @@ function App() {
       {
         loading ? (<div>Connecting to Metamask</div>) :(
           <Routes>
-          <Route path='/' element={<Hero marketplace={marketplace} nft={nft} />}/>
+          <Route path='/' element={<Hero marketplace={marketplace} nft={nft} account={account}/>}/>
           <Route path='/create'  element={<Create marketplace={marketplace} nft={nft} />}/>
           <Route path='/my-listed-nfts' element={<MyItem marketplace={marketplace} nft={nft} account={account} />}/>
           {/* <Route path='/my-purchases' element={<MyPurchases marketplace={marketplace} nft={nft} account={account} />} /> */}

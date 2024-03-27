@@ -123,18 +123,20 @@ const Create = ({ marketplace, nft }) => {
   await tx1.wait()
     const id = await nft.tokenCount()
 
-    toast.info("Approve To sell NFT on marketplace", {position:"top-center"})
+    // toast.info("Approve To sell NFT on marketplace", {position:"top-center"})
     
-  const tx2 = await(await nft.setApprovalForAll(marketplace.address, true))
+  // const tx2 = await(await nft.setApprovalForAll(marketplace.address, true))
 
   toast.info("Wait till transaction Confirms....", {
     position: "top-center"
   })
 
-  await tx2.wait()
+  // await tx2.wait()
     
     toast.info("Confirm to Add Item to Marketplace", {position:"top-center"})
     const listingPrice = ethers.utils.parseEther(forminfo.price.toString())
+    console.log("This is listing price")
+    console.log(listingPrice)
    const tx3 =  await(await marketplace.makeItem(nft.address, id, listingPrice))
    toast.info("Wait till transaction Confirms....", {
     position: "top-center"

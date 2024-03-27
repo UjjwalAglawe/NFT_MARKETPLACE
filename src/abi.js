@@ -229,7 +229,6 @@ export const marketplace_abi = [
 		"type": "function"
 	}
 ]
-
 export const nft_abi = [
 	{
 		"inputs": [
