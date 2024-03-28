@@ -18,7 +18,7 @@ export default function Purchases({ marketplace, nft, account }) {
       const item = await marketplace.items(indx);
 
       // Check if the item has been sold and if the buyer is the current account
-      if (item.sold && item.seller !== account) {
+      if (item.sold && item.seller === account) {
         // Get the token URI from the NFT contract
         const uri = await nft.tokenURI(item.tokenId);
 
