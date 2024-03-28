@@ -123,7 +123,7 @@ const Create = ({ marketplace, nft }) => {
   await tx1.wait()
     const id = await nft.tokenCount()
 
-    // toast.info("Approve To sell NFT on marketplace", {position:"top-center"})
+  //   toast.info("Approve To sell NFT on marketplace", {position:"top-center"})
     
   // const tx2 = await(await nft.setApprovalForAll(marketplace.address, true))
 

@@ -19,6 +19,7 @@ export default function Purchaes({ marketplace, nft, account }) {
     const itemCount = await marketplace.itemCount()
     let listedItems = []
     let soldItems = []
+    let allItems=[]
 
     for (let indx = 1; indx <= itemCount; indx++) {
       // const i = await marketplace.Bought(indx);
@@ -26,10 +27,11 @@ export default function Purchaes({ marketplace, nft, account }) {
       // console.log("This is Item");
       // console.log(i.seller);
 
-      if (i.seller === account) {
+      if (i.sold) {
 
         // get uri url from nft contract
         console.log('INSIDE IF');
+        allItems.push(i);
 
         const uri = await nft.tokenURI(i.tokenId)
         // use uri to fetch the nft metadata stored on ipfs 
@@ -67,6 +69,9 @@ export default function Purchaes({ marketplace, nft, account }) {
     // setPurchases(purchases)
     setListedItems(listedItems)
     setSoldItems(soldItems)
+    console.log("This is sold Items");
+    console.log(soldItems);
+    // console.log("This are all Items",allItems);
 
   }
 
