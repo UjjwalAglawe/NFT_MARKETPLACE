@@ -110,41 +110,43 @@ const Create = ({ marketplace, nft }) => {
     };
 
 
-  const mintThenList = async (uri) => { 
-    // toast.info("Confirm to Mint the NFT", {
-    //   position: "top-center"
-    // })
-  const tx1=  await(await nft.mint(uri))
-
-  toast.info("Wait till transaction Confirms....", {
-    position: "top-center"
-  })
-
-  await tx1.wait()
-    const id = await nft.tokenCount()
-
-  //   toast.info("Approve To sell NFT on marketplace", {position:"top-center"})
-    
-  // const tx2 = await(await nft.setApprovalForAll(marketplace.address, true))
-
-  toast.info("Wait till transaction Confirms....", {
-    position: "top-center"
-  })
-
-  // await tx2.wait()
-    
-    toast.info("Confirm to Add Item to Marketplace", {position:"top-center"})
-    const listingPrice = ethers.utils.parseEther(forminfo.price.toString())
-    console.log("This is listing price")
-    console.log(listingPrice)
-   const tx3 =  await(await marketplace.makeItem(nft.address, id, listingPrice))
-   toast.info("Wait till transaction Confirms....", {
-    position: "top-center"
-  })
-
-  await tx3.wait()
-    toast.success("NFT added to marketplace successfully", {position:"top-center"})
-  }
+    const mintThenList = async (uri) => { 
+      // toast.info("Confirm to Mint the NFT", {
+      //   position: "top-center"
+      // })
+    const tx1=  await(await nft.mint(uri))
+  
+    toast.info("Wait till transaction Confirms....", {
+      position: "top-center"
+    })
+  
+    await tx1.wait()
+      const id = await nft.tokenCount()
+  
+      toast.info("Approve To sell NFT on marketplace", {position:"top-center"})
+      
+    const tx2 = await(await nft.approve(marketplace.address, id))
+  
+    toast.info("Wait till transaction Confirms....", {
+      position: "top-center"
+    })
+  
+    await tx2.wait()
+      
+      toast.info("Confirm to Add Item to Marketplace", {position:"top-center"})
+      const listingPrice = ethers.utils.parseEther(forminfo.price.toString())
+      console.log("This is listing price")
+      console.log(listingPrice)
+     const tx3 =  await(await marketplace.makeItem(nft.address, id, listingPrice))
+     toast.info("Wait till transaction Confirms....", {
+      position: "top-center"
+    })
+  
+    await tx3.wait()
+      toast.success("NFT added to marketplace successfully", {position:"top-center"})
+    }
+  
+  
 
 
   return (
