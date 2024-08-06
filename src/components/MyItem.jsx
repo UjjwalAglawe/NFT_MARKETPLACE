@@ -8,36 +8,33 @@ function renderSoldItems(items) {
     
   return (
     <>
-      <h2>Sold</h2>
-      <div className='flex flex-wrap  gap-4 mt-4 justify-start items-center'>
-        {items.map((item, idx) => (
-          <div className="w-1/5 h-fit bg-red-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  hover:bg-slate-400">
-            
+  <h2 className="text-2xl font-semibold text-center mt-8">Sold</h2>
+  <div className="container mx-auto mt-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {items.map((item, idx) => (
+        <div key={idx} className="bg-gray-100 rounded-lg shadow-md dark:bg-gray-800 hover:transform hover:scale-105 transition-transform duration-300">
           <img
-              className="rounded-t-lg overflow-hidden object-cover justify-center w-full max-h-60"
-              src={item.image}
-              alt="flower"
+            className="rounded-t-lg object-cover w-full h-56"
+            src={item.image}
+            alt="flower"
           />
-    
-      <div className="py-2 flex flex-col items-center flex-center">
-          
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {item.name}
-              </h5>
-          
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-             <strong> For {ethers.utils.formatEther(item.totalPrice)} ETH <br></br> Recieved {ethers.utils.formatEther(item.price)} ETH</strong>
-          </p>
-         
-      </div>
+          <div className="p-4">
+            <h5 className="text-xl font-semibold text-blue-600 dark:text-blue-400">{item.name}</h5>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              <strong>For {ethers.utils.formatEther(item.totalPrice)} ETH</strong><br />
+              <strong>Received {ethers.utils.formatEther(item.price)} ETH</strong>
+            </p>
           </div>
-        ))}
-      </div>
-    </>
+        </div>
+      ))}
+    </div>
+  </div>
+</>
+
   )
 }
 
-export default function MyItem({ marketplace, nft, account }) {
+export default function MyItem({ marketplace, account }) {
   const [loading, setLoading] = useState(true)
   const [listedItems, setListedItems] = useState([])
   const [soldItems, setSoldItems] = useState([])
@@ -54,10 +51,10 @@ export default function MyItem({ marketplace, nft, account }) {
     for (let indx = 1; indx <= itemCount; indx++) {
       const i = await marketplace.items(indx)
       
-      if (i.seller === account) {
+      if (i.ogOwner === account) {
         
         // get uri url from nft contract
-        const uri = await nft.tokenURI(i.tokenId)
+        const uri = await marketplace.tokenURI(i.tokenId)
         // use uri to fetch the nft metadata stored on ipfs 
         const response = await fetch(uri)
         const metadata = await response.json()
@@ -91,42 +88,35 @@ export default function MyItem({ marketplace, nft, account }) {
     </main>
   )
   return (
-    <div className="flex justify-center">
-      {listedItems.length > 0 ?
-        <div className="px-5 py-3 container">
-            <h2>Created NFT</h2>
-          <div className='flex flex-wrap  gap-4 mt-4 justify-start items-center'>
-            {listedItems.map((item, idx) => (
-               <div className="w-1/5 h-fit bg-red-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
-            
-               <img
-                   className="rounded-t-lg overflow-hidden object-cover justify-center w-full max-h-60"
-                   src={item.image}
-                   alt="flower"
-               />
-         
-           <div className="py-2 flex flex-col items-center flex-center">
-               
-                   <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                       {item.name}
-                   </h5>
-               
-               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                  <strong>{ethers.utils.formatEther(item.totalPrice)} ETH</strong>
-               </p>
-              
-           </div>
-               </div>
-            ))}
+    <div className="flex justify-center min-h-screen">
+  {listedItems.length > 0 ? (
+    <div className="container mx-auto mt-8">
+      <h2 className="text-2xl font-semibold text-center mt-8">Created NFT</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
+        {listedItems.map((item, idx) => (
+          <div key={idx} className="bg-gray-100 rounded-lg shadow-md dark:bg-gray-800 hover:transform hover:scale-105 transition-transform duration-300">
+            <img
+              className="rounded-t-lg object-cover w-full h-56"
+              src={item.image}
+              alt="flower"
+            />
+            <div className="p-4">
+              <h5 className="text-xl font-semibold text-blue-600 dark:text-blue-400">{item.name}</h5>
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                <strong>{ethers.utils.formatEther(item.totalPrice)} ETH</strong>
+              </p>
             </div>
-         
-            {soldItems.length > 0 && renderSoldItems(soldItems)}
-        </div>
-        : (
-          <main style={{ padding: "1rem 0" }}>
-            <h2>No listed NFT's</h2>
-          </main>
-        )}
+          </div>
+        ))}
+      </div>
+      {soldItems.length > 0 && renderSoldItems(soldItems)}
     </div>
+  ) : (
+    <main className="flex justify-center items-center min-h-screen">
+      <h2 className="text-xl">No listed NFT's</h2>
+    </main>
+  )}
+</div>
+
   );
 }

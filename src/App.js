@@ -17,7 +17,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [account, setAccount] = useState("");
   const [marketplace, setMarketplace]= useState({});
-  const [nft, setNFT] = useState({})
+  // const [nft, setNFT] = useState({})
 
 
   useEffect(() => {
@@ -38,8 +38,9 @@ function App() {
         const address = await signer.getAddress();
         setAccount(address);
         setLoading(false)
-        let marketplaceAddress = "0xcF858f53eB4bDD05CC98c275D2C22d97A89d0DE4";
-        let nftAddress = "0x477E818F18393e8bb755283493E5e2D0039Ee163";
+        // let marketplaceAddress = "0xcF858f53eB4bDD05CC98c275D2C22d97A89d0DE4";
+        // let nftAddress = "0x477E818F18393e8bb755283493E5e2D0039Ee163";
+        let marketplaceAddress="0xA87C4A395f21C38D1BC43b9E2b6FC97Fe3056178";
 
         const marketplacecontract = new ethers.Contract(
           marketplaceAddress,
@@ -47,15 +48,15 @@ function App() {
           signer
         );
 
-        const nftcontract = new ethers.Contract(
-          nftAddress,
-          nft_abi,
-          signer
-        )
+        // const nftcontract = new ethers.Contract(
+        //   nftAddress,
+        //   nft_abi,
+        //   signer
+        // )
 
         //console.log(contract);
         setMarketplace(marketplacecontract);
-        setNFT(nftcontract)
+        // setNFT(nftcontract)
        
       } else {
         console.error("Metamask is not installed");
@@ -75,11 +76,11 @@ function App() {
       {
         loading ? (<div>Connecting to Metamask</div>) :(
           <Routes>
-          <Route path='/' element={<Hero marketplace={marketplace} nft={nft} account={account}/>}/>
-          <Route path='/create'  element={<Create marketplace={marketplace} nft={nft} />}/>
-          <Route path='/my-listed-nfts' element={<MyItem marketplace={marketplace} nft={nft} account={account} />}/>
+          <Route path='/' element={<Hero marketplace={marketplace} account={account}/>}/>
+          <Route path='/create'  element={<Create marketplace={marketplace} />}/>
+          <Route path='/my-listed-nfts' element={<MyItem marketplace={marketplace} account={account} />}/>
           {/* <Route path='/my-purchases' element={<MyPurchases marketplace={marketplace} nft={nft} account={account} />} /> */}
-          <Route path='/my-purchases' element={<Purchaes marketplace={marketplace} nft={nft} account={account} />} />
+          <Route path='/my-purchases' element={<Purchaes marketplace={marketplace} account={account} />} />
         </Routes>
         )}
     
